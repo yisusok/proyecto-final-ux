@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .txt {
+            position: relative;
+            right: 11rem;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        .h2-2 {
+            color: #CA1DA4;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 80%;
+            max-width: 1200px;
+            overflow: hidden;
+            background-color: #ffffff00;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 33.3333%;
+            box-sizing: border-box;
+            padding: 20px;
+            display: flex;
+            background-color: rgba(0, 0, 0, 0);
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slide .image-container {
+            width: 100%;
+            height: 20rem;
+        }
+
+        .slide .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        audio {
+            width: 100%;
+            background-color: #f1f3f4;
+            outline: none;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgb(0 0 0 / 0%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 1;
+            font-size: 3rem;
+        }
+
+        .prev {
+            left: -8px;
+            top: 13rem;
+        }
+
+        .next {
+            right: -8px;
+            top: 13rem;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .audio-player::-webkit-media-controls-enclosure {
+    overflow: hidden;
+}
+
+.audio-player::-webkit-media-controls-panel {
+    width: calc(100% - 35px); /* Ajusta según sea necesario */
+}
+
+.audio-player::-webkit-media-controls-download-button {
+    display: none;
+}
+
+
+        @media screen and (max-width: 550px) {
+
+            .slider-container{
+                width: 90%;
+        
+            }
+
+            .slide{
+                min-width: 95%;
+            }
+
+            .txt{
+                position: static;
+                
+            }
+
+
+        }
+
+    </style>
+</head>
+<body >
+    <div id="produccion" class="txt">
+        <h2>MIS</h2>
+        <h2 class="h2-2">PRODUCCIONES</h2>
+    </div>
+
+    <div class="slider-container">
+        <button class="prev">&#10094;</button>
+        <div class="slider">
+            <div class="slide">
+                <div class="image-container">
+                    <img src="/ivo.png" alt="Image 1">
+                </div>
+                <audio controls class="audio-player">
+                    <source src="/Beat1cumbia.wav" type="audio/wav">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+            <div class="slide">
+                <div class="image-container">
+                    <img src="/ivo.png" alt="Image 2">
+                </div>
+                <audio controls class="audio-player">
+                    <source src="Beat2.wav" type="audio/wav">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+            <div class="slide">
+                <div class="image-container">
+                    <img src="/ivo.png" alt="Image 3">
+                </div>
+                <audio controls class="audio-player">
+                    <source src="Beat3.wav" type="audio/wav">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+            <div class="slide">
+                <div class="image-container">
+                    <img src="/ivo.png" alt="Image 4">
+                </div>
+                <audio controls class="audio-player">
+                    <source src="Beat4.wav" type="audio/wav">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+        </div>
+        <button class="next">&#10095;</button>
+    </div>
+
+<script>
+    // Obtener los botones y el slider
+const prevButton = document.querySelector('.prev') as HTMLButtonElement | null;
+const nextButton = document.querySelector('.next') as HTMLButtonElement | null;
+const slider = document.querySelector('.slider') as HTMLElement | null;
+
+function showSlide(index: number) {
+    if (slider) {
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        // Ajusta el índice de la diapositiva actual
+        if (index >= totalSlides) {
+            currentSlide = 0;
+        } else if (index < 0) {
+            currentSlide = totalSlides - 1;
+        } else {
+            currentSlide = index;
+        }
+
+        // Mostrar 3 elementos por vez, ajusta el cálculo si es necesario
+        const slideWidth = 100 / slides.length;
+        const offset = -currentSlide * slideWidth;
+        slider.style.transform = `translateX(${offset}%)`;
+    }
+}
+
+// Añadir manejadores de eventos solo si los botones no son null
+if (prevButton) {
+    prevButton.addEventListener('click', () => showSlide(currentSlide - 1));
+}
+
+if (nextButton) {
+    nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
+}
+
+// Inicializar la primera diapositiva
+let currentSlide = 0;
+showSlide(currentSlide);
+
+</script>
+</body>
+</html>

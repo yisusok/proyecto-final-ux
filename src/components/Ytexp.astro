@@ -1,0 +1,83 @@
+<section class="secc">
+    <h1>CANAL DE YOUTUBE</h1>
+    <cont class="cont">
+    <reproductor class="">
+        <lite-youtube class="reproductor" videoid="uqyxbHzp2fI"></lite-youtube>
+    </reproductor>
+    </cont>
+    <h2>FORMACION</h2>
+    <ul class="list">
+        <li>curso de tal</li>
+        <li>curso de cual</li>
+        <li>tecnicatura en esto</li>
+    </ul>
+</section>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.5.0/lite-youtube.js"></script>
+
+
+<style>
+    .secc{
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        color: white;
+    }
+
+    
+    h1{
+    font-family: sans-serif;
+    padding: 3rem;
+    font-size: 2rem;
+    }
+ 
+    h2{
+    font-family: sans-serif;
+    padding: 3rem;
+    font-size: 2rem;
+    }
+    
+    .cont{
+        display: flex;
+        justify-content: center;
+    }
+    .reproductor{
+    padding-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 26rem;
+    width: 43rem;
+    background-color: black;
+    border: 1rem solid #ca1da4;
+    border-radius: 7rem;
+    margin-bottom: 3rem;
+    }
+
+    .list{
+    width: 50%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    }
+
+    li{
+    position: relative;
+    left: ;
+    display: flex;
+    margin-bottom: 1rem;
+    }
+
+    @media screen and (max-width: 730px) {
+
+        body{
+            display: none;
+        }
+
+        .secc{
+            display: none;
+        }
+
+    }
+    
+</style>
