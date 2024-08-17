@@ -1,20 +1,30 @@
 <section class="contact-form">
     <h2>CONTACTO</h2>
-    <form>
+    <form action="https://formsubmit.co/your@email.com" method="POST">
       <div class="form-group  large">
-        <input type="email" id="email" class="form-input" placeholder="email......................." aria-label="Email">
+        <input type="email" id="email" name="name" class="form-input" placeholder="email......................." aria-label="Email">
       </div>
       <div >
-        <input type="text" id="name" class="names" placeholder="Nombre" aria-label="Email">
-        <input type="text" id="surname" class="names" placeholder="Apellido" aria-label="Email">
+        <input type="text" id="name" name="name" class="names" placeholder="Nombre" aria-label="Email">
+        <input type="text" id="surname" name="name" class="names" placeholder="Apellido" aria-label="Email">
       </div>
       <div class="form-group">
-        <input type="text" id="asunto" class="form-input" placeholder="Asunto" aria-label="Email">
+        <input type="text" id="asunto" name="name" class="form-input" placeholder="Asunto" aria-label="Email">
       </div>
       <div class="form-group">
-        <textarea id="Mensaje" class="form-input" placeholder="Mensaje" aria-label="Email"></textarea>
+        <textarea id="Mensaje" name="name" class="form-input" placeholder="Mensaje" aria-label="Email"></textarea>
       </div>
+
+      <input type="hidden" name="_next" value="/">
+      <input type="hidden" name="_captcha" value="false">
+
+
     </form>
+
+    <div class="link">
+      <button type="submit">Enviar</button>
+  </div>
+
 </section>
 
 <style>
@@ -84,6 +94,28 @@
         margin-bottom: 2rem;
       }
 
+    }
+
+
+    button{
+    padding: .6rem;
+    width: 9rem;
+    text-align: center;
+    background-color:#c91ca4;
+    border-radius: 5rem;
+    color: white;
+    text-decoration: none;
+    border: none;
+    }
+
+    button:hover{
+        background-color: rgb(80, 11, 65);
+
+    }
+
+    .link{
+        display: flex;
+        justify-content: center;
     }
 
 
