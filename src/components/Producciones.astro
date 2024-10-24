@@ -174,34 +174,44 @@
 
 <script>
     // Obtener los botones y el slider
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
-    const slider = document.querySelector('.slider');
-    let currentSlide = 0; // Asegurarse de que la variable esté declarada
+const prevButton = document.querySelector('.prev') as HTMLButtonElement | null;
+const nextButton = document.querySelector('.next') as HTMLButtonElement | null;
+const slider = document.querySelector('.slider') as HTMLElement | null;
 
-    if (slider && prevButton && nextButton) {
-        // Función para mostrar la diapositiva correspondiente
-        function showSlide(index) {
-            const slides = document.querySelectorAll('.slide');
-            const totalSlides = slides.length;
-
-            // Ajustar el índice para el ciclo de diapositivas
-            currentSlide = (index + totalSlides) % totalSlides;
-
-            // Mostrar las diapositivas de forma horizontal
-            const offset = -currentSlide * 100 / totalSlides;
-            slider.style.transform = `translateX(${offset}%)`;
+function showSlide(index: number) {
+    if (slider) {
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        // Ajusta el índice de la diapositiva actual
+        if (index >= totalSlides) {
+            currentSlide = 0;
+        } else if (index < 0) {
+            currentSlide = totalSlides - 1;
+        } else {
+            currentSlide = index;
         }
 
-        // Eventos de clic para cambiar de diapositiva
-        prevButton.addEventListener('click', () => showSlide(currentSlide - 1));
-        nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
-
-        // Mostrar la primera diapositiva al cargar la página
-        showSlide(currentSlide);
-    } else {
-        console.error("Error: no se encontraron los elementos del slider.");
+        // Mostrar 3 elementos por vez, ajusta el cálculo si es necesario
+        const slideWidth = 100 / slides.length;
+        const offset = -currentSlide * slideWidth;
+        slider.style.transform = `translateX(${offset}%)`;
     }
+}
+
+// Añadir manejadores de eventos solo si los botones no son null
+if (prevButton) {
+    prevButton.addEventListener('click', () => showSlide(currentSlide - 1));
+}
+
+if (nextButton) {
+    nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
+}
+
+// Inicializar la primera diapositiva
+let currentSlide = 0;
+showSlide(currentSlide);
+
 </script>
 </body>
 </html>
